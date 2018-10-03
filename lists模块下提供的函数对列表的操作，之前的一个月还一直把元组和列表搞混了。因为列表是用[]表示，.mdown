@@ -1,0 +1,57 @@
+lists模块下提供的函数对列表的操作，之前的一个月还一直把元组和列表搞混了。因为列表是用[]表示，以前的c,c++,和java的数组也是用[]表示。
+在元组和列表都没完全分清楚时使用erlang在工作上遇到的问题是，面对实际问题上的元组的操作常常力不从心，对列表的遍历筛选判断获取。所以经过这段时间，对list的操作也熟练了很多，至少不再没有一开始在怎么下手这件事上都费劲。
+
+
+
+删除列表 List 里的一个元素Element，只删除第一出现的元素，不会删除相同的元素
+lists:delete({3, 4}, [{1, 2}, {3,4}, {5, 6}, {7, 8}, {9, 10}]).
+[{1,2},{5,6},{7,8},{9,10}]
+
+删除列表 List 中的最后一个元素。
+lists:droplast([1, 2, 3, 4, 5]).
+[1,2,3,4]
+
+什么时候会用得到lists:dropwhile/2呢？
+
+lists:duplicate/2
+返回一个由 N 个元素副本组成的列表
+
+lists:filter/2
+选择符合满足断言条件的元素
+
+lists:flatmap/2
+对映射 map 调用返回的列表进行附加 append 操作
+lists:foreach/2
+列表里的每一个元素被函数调用
+lists:map/2
+列表里的每一个元素被函数调用
+
+上面这三者的区别，foreach返回ok，对列表遍历应该很常用。flatmap的函数返回的是列表，然后拼在一起。map返回的是值，然后组成列表。
+
+lists:keydelete/3
+从元组列表 TupleList1 里删除元组的第 N 个值跟 Key 是一样的元素，只删除第一个匹配的元素，后面有相同的不做处理， 最后返回处理过的新列表 TupleList2
+
+lists:keymap/3
+元组列表里元组的值被函数调用
+（遍历元组，替换每个对应位置的值）
+
+lists:keymember/3
+判断元组列表 TupleList 里元组的第 N 个值里是否有 Key 这个值存在
+
+lists:keyreplace/4
+TupleList = [{a, 1}, {b, 2}, {c, 3}, {d, 4}],
+lists:keyreplace(b, 1, TupleList, {b, 22}).
+
+还有lists:keyreplace/4 与lists:keystore/4 的区别。
+
+lists:nth/2
+获取列表里的第 N 个元素
+
+lists:nthtail/2
+获取列表里的第 N 个元素后的元素
+
+lists:split/2
+把一个列表分成两个列表
+
+lists:takewhile/2
+基于一个断言提取一个列表
